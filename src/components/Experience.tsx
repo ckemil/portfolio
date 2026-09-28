@@ -9,43 +9,50 @@ export default function Experience() {
       eyebrow="Experience"
       title={
         <>
-          Where I&apos;ve <span className="text-gradient">shipped</span>.
+          Where I&apos;ve <span className="text-mint">shipped</span>.
         </>
       }
     >
-      <ol className="relative space-y-10 border-l border-white/10 pl-6 sm:pl-10">
-        {experience.map((job, i) => (
-          <li key={job.company} className="relative">
-            <span
-              aria-hidden
-              className="absolute top-2 -left-[31px] h-3 w-3 rounded-full bg-gradient-to-br from-violet to-cyan ring-4 ring-background sm:-left-[47px]"
-            />
-            <Reveal delay={i * 0.05} className="glass glow rounded-3xl p-6 sm:p-8">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h3 className="font-display text-2xl font-bold sm:text-3xl">{job.role}</h3>
-                <span className="font-display text-sm tracking-wide text-cyan">{job.period}</span>
-              </div>
-              <p className="mt-1 text-muted">
-                {job.company} · {job.location}
+      {/* StoryStream: dashed ultraviolet spine, mono timestamps on the rail */}
+      <ol className="relative space-y-4 border-l border-dashed border-uv-rule pl-6 md:ml-44 md:pl-8">
+        {experience.map((job, i) => {
+          const current = i === 0;
+          return (
+            <li key={job.company} className="relative">
+              <span
+                aria-hidden
+                className={`absolute top-8 -left-[29px] h-2.5 w-2.5 rounded-full md:-left-[37px] ${current ? "bg-mint" : "bg-white"}`}
+              />
+              <p className="meta mb-2 text-muted md:absolute md:top-7 md:-left-52 md:mb-0 md:w-40 md:text-right">
+                {job.period}
               </p>
-              <ul className="mt-5 space-y-2.5">
-                {job.highlights.map((h) => (
-                  <li key={h} className="flex gap-3 leading-relaxed text-foreground/85">
-                    <span aria-hidden className="mt-2.5 h-1 w-3 shrink-0 rounded-full bg-violet" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {job.tech.map((t) => (
-                  <li key={t} className="rounded-md bg-white/5 px-2.5 py-1 font-mono text-xs text-muted">
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </li>
-        ))}
+              <Reveal delay={i * 0.05} className={`p-6 sm:p-8 ${current ? "tile border-mint!" : "tile"}`}>
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="kicker text-mint">
+                    {job.company} · {job.location}
+                  </p>
+                  {current && <span className="pill bg-mint text-black">Now</span>}
+                </div>
+                <h3 className="mt-3 text-2xl leading-none font-bold sm:text-[2.125rem]">{job.role}</h3>
+                <ul className="mt-6 space-y-3">
+                  {job.highlights.map((h) => (
+                    <li key={h} className="flex gap-3 text-base leading-[1.6] font-medium text-soft">
+                      <span aria-hidden className="mt-[11px] h-px w-3 shrink-0 bg-mint" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {job.tech.map((t) => (
+                    <li key={t} className="pill border border-frame text-muted">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </li>
+          );
+        })}
       </ol>
     </Section>
   );

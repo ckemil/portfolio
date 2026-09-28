@@ -44,7 +44,7 @@ export const summary = [
 ];
 
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Languages", items: ["Java 17", "SQL", "JavaScript", "HTML5", "CSS3"] },
+  { group: "Languages", items: ["Java", "SQL", "JavaScript", "HTML5", "CSS3"] },
   {
     group: "Frameworks",
     items: [
@@ -83,7 +83,7 @@ export const experience: Job[] = [
       "Published KYC events to RabbitMQ for real-time downstream risk analysis, monitoring and alerting.",
       "Co-led high-level architecture with product, security and infrastructure teams; defined routing and load balancing with NGINX, ALB and NLB.",
     ],
-    tech: ["Java 17", "Spring Boot", "Spring Data JPA", "RabbitMQ", "Flyway", "WebClient", "NGINX"],
+    tech: ["Java", "Spring Boot", "Spring Data JPA", "RabbitMQ", "Flyway", "WebClient", "NGINX"],
   },
   {
     role: "Senior Software Developer",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
       "Resilient provider integrations with circuit breakers",
       "Event streaming to RabbitMQ for real-time risk monitoring",
     ],
-    tech: ["Java 17", "Spring Boot", "RabbitMQ", "PostgreSQL", "Flyway"],
+    tech: ["Java", "Spring Boot", "RabbitMQ", "PostgreSQL", "Flyway"],
   },
   {
     name: "iCargo — Quality Audit",

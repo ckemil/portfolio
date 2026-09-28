@@ -2,7 +2,11 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, MapPin } from "lucide-react";
+import dynamic from "next/dynamic";
 import { profile } from "@/data/resume";
+
+// three.js is heavy, so load the scene in the browser after the page renders
+const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -10,35 +14,35 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-16">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="blob top-[-10%] left-[-10%] h-[45vw] w-[45vw] bg-violet" />
-        <div className="blob top-[20%] right-[-15%] h-[40vw] w-[40vw] bg-cyan [animation-delay:-6s]" />
-        <div className="blob bottom-[-20%] left-[25%] h-[35vw] w-[35vw] bg-pink [animation-delay:-12s]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgb(255_255_255/0.04)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255/0.04)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] bg-[size:64px_64px]" />
-      </div>
+      <HeroScene className="absolute inset-y-0 right-0 w-full opacity-30 lg:w-[58%] lg:opacity-100" />
 
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-16 md:px-12">
         <motion.p
-          initial={reduce ? false : { opacity: 0, y: 16 }}
+          initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="glass mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-muted"
+          transition={{ duration: 0.5 }}
+          className="pill mb-8 gap-1.5 bg-mint text-black"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
-          </span>
-          <MapPin className="h-3.5 w-3.5" /> {profile.location}
+          <MapPin className="h-3 w-3" /> {profile.location}
         </motion.p>
 
-        <h1 className="font-display text-[clamp(3rem,11vw,8.5rem)] leading-[0.9] font-bold tracking-tighter">
+        <motion.p
+          initial={reduce ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="whisper mb-5 text-soft"
+        >
+          {profile.title}
+        </motion.p>
+
+        <h1 className="display text-[clamp(3.5rem,13vw,10rem)]">
           {words.map((w, i) => (
             <motion.span
               key={w}
-              initial={reduce ? false : { opacity: 0, y: 60 }}
+              initial={reduce ? false : { opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.2em] inline-block ${i === words.length - 1 ? "text-gradient" : ""}`}
+              transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={`block ${i === words.length - 1 ? "text-mint" : ""}`}
             >
               {w}
             </motion.span>
@@ -46,30 +50,18 @@ export default function Hero() {
         </h1>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
+          initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
         >
-          <p className="mt-8 font-display text-2xl font-semibold sm:text-3xl">
-            {profile.title} <span className="text-muted">·</span>{" "}
-            <span className="text-muted">{profile.tagline}</span>
-          </p>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{profile.intro}</p>
+          <p className="kicker mt-8 text-muted">{profile.tagline}</p>
+          <p className="mt-4 max-w-xl text-base leading-[1.6] font-medium text-soft sm:text-lg">{profile.intro}</p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#contact"
-              className="group rounded-full bg-gradient-to-r from-violet via-cyan to-pink p-[2px] transition-transform hover:scale-105"
-            >
-              <span className="block rounded-full bg-background px-7 py-3.5 font-semibold transition-colors group-hover:bg-transparent group-hover:text-background">
-                Get in touch
-              </span>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a href="#contact" className="btn btn-primary">
+              Get in touch
             </a>
-            <a
-              href={profile.resume}
-              download
-              className="glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-semibold transition-transform hover:scale-105"
-            >
+            <a href={profile.resume} download className="btn btn-secondary">
               <Download className="h-4 w-4" /> Download resume
             </a>
           </div>
@@ -79,9 +71,9 @@ export default function Hero() {
       <a
         href="#about"
         aria-label="Scroll to about"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-muted motion-reduce:animate-none"
+        className="absolute bottom-6 left-1/2 flex h-11 w-11 -translate-x-1/2 animate-bounce items-center justify-center rounded-full border border-frame text-muted motion-reduce:animate-none"
       >
-        <ArrowDown />
+        <ArrowDown className="h-4 w-4" />
       </a>
     </section>
   );

@@ -9,16 +9,16 @@ export default function About() {
       eyebrow="About"
       title={
         <>
-          Building systems that <span className="text-gradient">don&apos;t blink</span> under load.
+          Building systems that <span className="text-mint">don&apos;t blink</span> under load.
         </>
       }
     >
-      <ul className="grid gap-4 md:grid-cols-2">
+      <ul className="grid gap-3 md:grid-cols-2">
         {summary.map((line, i) => (
-          <Reveal key={line} delay={i * 0.06}>
-            <li className="glass glow flex h-full gap-4 rounded-2xl p-6">
-              <span className="font-display text-sm font-bold text-violet">{String(i + 1).padStart(2, "0")}</span>
-              <p className="leading-relaxed text-foreground/85">{line}</p>
+          <Reveal key={line} delay={i * 0.05}>
+            <li className="tile flex h-full gap-5 p-6 sm:p-7">
+              <span className="kicker pt-1 text-mint">{String(i + 1).padStart(2, "0")}</span>
+              <p className="text-base leading-[1.6] font-medium text-soft">{line}</p>
             </li>
           </Reveal>
         ))}

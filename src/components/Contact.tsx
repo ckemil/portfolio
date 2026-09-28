@@ -12,39 +12,33 @@ function LinkedInIcon({ className }: { className?: string }) {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl overflow-hidden px-4 py-24 sm:px-6 md:py-32">
-      <Reveal className="relative overflow-hidden rounded-[2.5rem] border border-white/10 p-8 sm:p-14 md:p-20">
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-violet/30 via-background to-cyan/20" />
-        <div aria-hidden className="blob -z-10 -right-20 -bottom-20 h-80 w-80 bg-pink" />
-
-        <p className="mb-4 font-display text-sm font-medium tracking-[0.3em] text-cyan uppercase">Contact</p>
-        <h2 className="font-display text-[clamp(2.5rem,8vw,6rem)] leading-[0.95] font-bold tracking-tight">
-          Let&apos;s build something <span className="text-gradient">solid</span>.
+    <section id="contact" className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+      <Reveal className="rounded-[40px] bg-uv p-8 text-white sm:p-14 md:p-20">
+        <p className="kicker mb-4 text-mint">Contact</p>
+        <h2 className="display text-[clamp(3rem,9vw,6.69rem)]">
+          Let&apos;s build something <span className="text-mint">solid</span>.
         </h2>
-        <p className="mt-6 max-w-xl text-lg text-muted">
+        <p className="mt-6 max-w-xl text-lg leading-[1.6] font-medium text-white/85">
           Have a backend or microservices challenge in mind? Drop me a line.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a
-            href={`mailto:${profile.email}`}
-            className="group inline-flex items-center justify-between gap-6 rounded-full bg-foreground px-7 py-4 font-semibold text-background transition-transform hover:scale-105"
-          >
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a href={`mailto:${profile.email}`} className="btn btn-primary justify-between gap-6 font-sans text-sm tracking-normal normal-case">
             <span className="inline-flex items-center gap-3 break-all">
-              <Mail className="h-5 w-5 shrink-0" /> {profile.email}
+              <Mail className="h-4 w-4 shrink-0" /> {profile.email}
             </span>
-            <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="h-4 w-4 shrink-0" />
           </a>
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="glass group inline-flex items-center justify-between gap-6 rounded-full px-7 py-4 font-semibold transition-transform hover:scale-105"
+            className="btn btn-outline-light justify-between gap-6 text-white"
           >
             <span className="inline-flex items-center gap-3">
-              <LinkedInIcon className="h-5 w-5" /> LinkedIn
+              <LinkedInIcon className="h-4 w-4" /> LinkedIn
             </span>
-            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
       </Reveal>

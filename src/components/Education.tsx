@@ -1,4 +1,3 @@
-import { GraduationCap } from "lucide-react";
 import { education } from "@/data/resume";
 import Reveal from "./Reveal";
 import Section from "./Section";
@@ -10,21 +9,19 @@ export default function Education() {
       eyebrow="Education"
       title={
         <>
-          Where it <span className="text-gradient">started</span>.
+          Where it <span className="text-mint">started</span>.
         </>
       }
     >
-      <Reveal className="glass glow flex flex-col gap-6 rounded-3xl p-8 sm:flex-row sm:items-center">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet to-cyan">
-          <GraduationCap className="h-8 w-8 text-background" />
-        </div>
-        <div className="flex-1">
-          <h3 className="font-display text-2xl font-bold sm:text-3xl">{education.degree}</h3>
-          <p className="mt-1 text-muted">
+      {/* White block = editorial spotlight */}
+      <Reveal className="flex flex-col gap-6 rounded-[24px] bg-white p-8 text-black sm:flex-row sm:items-end sm:justify-between sm:p-10">
+        <div>
+          <p className="kicker text-black/60">
             {education.school} · {education.location}
           </p>
+          <h3 className="mt-3 text-2xl leading-none font-bold sm:text-[2.125rem]">{education.degree}</h3>
         </div>
-        <span className="font-display text-cyan">{education.period}</span>
+        <span className="display text-[3.75rem] leading-none">{education.period.replace(/\s/g, "")}</span>
       </Reveal>
     </Section>
   );
