@@ -1,0 +1,128 @@
+% Emil Mohammed CK — Resume
+% Compile with: pdflatex Emil_Mohammed_Resume.tex   (or upload to Overleaf)
+\documentclass[a4paper,10pt]{article}
+
+% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage[a4paper,top=14mm,bottom=14mm,left=16mm,right=16mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{opensans}   % close to the Calibri/Open Sans look of the Word version
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+% ─── Colours ─────────────────────────────────────────────────────────────────
+\definecolor{navy}{HTML}{1F3A68}
+\definecolor{subtle}{HTML}{555555}
+
+% ─── Layout ──────────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+% Section headings: navy, uppercase, rule underneath
+\titleformat{\section}
+  {\color{navy}\bfseries\normalsize}
+  {}{0pt}{\MakeUppercase}
+  [\vspace{-6pt}{\color{navy}\rule{\linewidth}{0.8pt}}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+% Bullet lists
+\setlist[itemize]{leftmargin=14pt,itemsep=1.5pt,parsep=0pt,topsep=2pt,label=\textbullet}
+
+% ─── Helpers ─────────────────────────────────────────────────────────────────
+% \job{Role}{Company, Location}{Dates}
+\newcommand{\job}[3]{%
+  \vspace{4pt}%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1}\ \ {\color{subtle}|}\ \ {\color{subtle}#2} & {\small\itshape\color{subtle}#3}
+  \end{tabularx}\par
+}
+% \skill{Category}{Items}
+\newcommand{\skill}[2]{{\color{navy}\textbf{#1:}} #2\par\vspace{2pt}}
+
+% ═════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── Header ──────────────────────────────────────────────────────────────────
+\begin{center}
+  {\color{navy}\bfseries\fontsize{20}{24}\selectfont EMIL MOHAMMED CK}\\[4pt]
+  {\color{subtle}\large Senior Java Developer \,|\, Microservices \& Cloud-Native Systems}\\[4pt]
+  {\small\color{subtle}
+    Abu Dhabi, UAE \enspace\textbullet\enspace
+    +971 58 557 8187 \enspace\textbullet\enspace
+    \href{mailto:ckemil@gmail.com}{ckemil@gmail.com} \enspace\textbullet\enspace
+    \href{https://www.linkedin.com/in/ckemil/}{linkedin.com/in/ckemil/}}
+\end{center}
+\vspace{-4pt}
+{\color{navy}\rule{\linewidth}{1pt}}
+
+% ─── Career Summary ──────────────────────────────────────────────────────────
+\section{Career Summary}
+\begin{itemize}
+  \item \textbf{6+ years} of hands-on experience engineering Java Enterprise Applications and cloud-native microservices for high-volume, regulated environments (financial identity verification, air-cargo logistics).
+  \item Proven track record designing and building \textbf{Microservices} with \textbf{Spring Boot, Spring Cloud, JPA, and Hibernate}, from architecture design through production deployment.
+  \item Hands-on experience with \textbf{event-driven architecture} using Apache Kafka and RabbitMQ, and containerized deployment with Docker and Kubernetes.
+  \item Working knowledge of \textbf{CI/CD pipelines and DevOps} practices (Jenkins, SonarQube, Git), consistently maintaining 90\%+ automated test coverage.
+  \item Familiar with front-end development using \textbf{React, CSS3, and HTML5} for full-stack contributions.
+  \item 6+ years operating in \textbf{Agile/Scrum} environments, actively participating in grooming, planning, and retrospective ceremonies.
+\end{itemize}
+
+% ─── Technical Skills ────────────────────────────────────────────────────────
+\section{Technical Skills}
+\skill{Programming Languages}{Java 17, SQL, JavaScript, HTML5, CSS3}
+\skill{Frameworks \& Technologies}{Spring Boot, Microservices, Spring Cloud, JPA, Hibernate, JSP, Servlet, RESTful APIs, RestTemplate, WebClient, Maven, Feign, React, Mockito}
+\skill{Tools \& Platforms}{Docker, Kubernetes, NGINX, Jenkins, Apache Kafka, Git, JIRA, IntelliJ, Postman}
+\skill{Database Technologies}{PostgreSQL, Oracle, MSSQL, MySQL, Liquibase, Flyway}
+
+% ─── Professional Experience ─────────────────────────────────────────────────
+\section{Professional Experience}
+
+\job{Senior Java Developer}{Emirates Face Recognition, Abu Dhabi, UAE}{Feb 2025 -- Present}
+\begin{itemize}
+  \item Designed and developed scalable KYC microservices using \textbf{Java 17, Spring Boot, Spring MVC, and Spring Data JPA}, handling customer onboarding and identity-verification workflows for \textbf{10K+ users/transactions per day}.
+  \item Built the end-to-end KYC lifecycle --- OCR validation, identity matching, risk categorization, and approval workflows.
+  \item Built RESTful APIs with structured request validation, standardized error handling, and consistent response formats for seamless integration with upstream and downstream systems, managing database schema changes with Flyway.
+  \item Integrated external KYC providers (OCR, identity verification) via Apache HttpClient, RestTemplate, and WebClient, implementing retry mechanisms, timeouts, and circuit breakers for resilient production operation.
+  \item Published KYC events and exception messages to RabbitMQ, enabling real-time downstream risk analysis, monitoring, and alerting.
+  \item Co-led high-level system architecture design for the KYC platform, partnering with product, security, and infrastructure teams to finalize end-to-end flows meeting client and regulatory requirements.
+  \item Defined traffic routing and load-balancing strategy, including usage of NGINX, ALB, and NLB.
+\end{itemize}
+
+\job{Senior Software Developer}{IBS Software, Kochi, India}{Jun 2021 -- May 2024}
+\begin{itemize}
+  \item Delivered production code against requirements and design specifications while enforcing coding standards via SonarQube, keeping technical debt and critical code smells consistently below team thresholds.
+  \item Followed Test-Driven Development (TDD) with JUnit, sustaining \textbf{95\%+ unit test coverage} and \textbf{80\%+ contract test coverage} across delivered features.
+  \item Drove team visibility by reporting progress in reviews, walkthroughs, and metrics collection, contributing to consistently on-time sprint delivery.
+  \item Partnered with cross-functional teams in an Agile/Scrum environment to design, build, test, and ship software across bi-weekly sprints.
+  \item Technologies: Java 11, Spring Boot Microservices, Spring Data, JPA, REST API, Maven, JUnit, Mockito, Postman, Git, SQL, Liquibase, Kafka, Kubernetes, Jenkins, React.
+\end{itemize}
+
+\job{Software Developer}{UST, Trivandrum, India}{Feb 2019 -- Jun 2021}
+\begin{itemize}
+  \item Built Java-based automation tools that streamlined daily operational tasks, \textbf{reducing manual workload by 60\%} and freeing the team to focus on higher-value engineering work.
+  \item Maintained and optimized Java-based applications through proactive monitoring and regular enhancements, improving system performance and reducing downtime.
+  \item Provided delivery support for IBM WebSphere Commerce services, ensuring smooth functioning and integration of core e-commerce systems.
+  \item Technologies: Java 8, Spring Boot, Servlet, JSP, SQL, IBM WebSphere Commerce support tools.
+\end{itemize}
+
+% ─── Key Projects ────────────────────────────────────────────────────────────
+\section{Key Projects}
+\textbf{iCargo \,|\, Air Cargo Software (IBS Software)}
+\begin{itemize}
+  \item Developed and maintained the \textbf{Quality Audit module} of the iCargo Microservices application (Spring Boot) for airlines and ground-handling agents, validating Air Waybill (AWB) billing records including taxation and other charge details.
+  \item Implemented discrepancy-checking logic to automatically flag or clear AWB billing records, marking entries as \textbf{billed} once validated as discrepancy-free.
+  \item Leveraged Apache Kafka for real-time data streaming and asynchronous communication between distributed systems, improving overall system responsiveness.
+  \item Collaborated closely with Business Analysts and cross-functional teams to gather requirements and deliver solutions aligned with business objectives.
+\end{itemize}
+
+% ─── Education ───────────────────────────────────────────────────────────────
+\section{Education}
+\begin{itemize}
+  \item \textbf{Bachelor of Technology, Computer Science and Engineering} --- University of Calicut, Kerala, India \hfill (2013 -- 2017)
+\end{itemize}
+
+\end{document}
