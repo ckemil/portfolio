@@ -1,6 +1,8 @@
 // Live data for the Tech Radar section. Every source here is public, needs no API key
 // and allows browser (CORS) requests, so it works on a static export.
 
+export const NEWS_COUNT = 5;
+
 export type Release = { id: string; label: string; version: string; date: number; link?: string };
 export type JavaInfo = { latest: Release; lts: Release; next: { version: string; expected: number } };
 export type NewsItem = {
@@ -14,12 +16,11 @@ export type NewsItem = {
   time: number;
 };
 
-const STACK = [
+export const STACK = [
   { id: "spring-boot", label: "Spring Boot" },
   { id: "spring-framework", label: "Spring Framework" },
   { id: "hibernate-orm", label: "Hibernate ORM" },
   { id: "apache-kafka", label: "Apache Kafka" },
-  { id: "rabbitmq", label: "RabbitMQ" },
   { id: "kubernetes", label: "Kubernetes" },
   { id: "docker-engine", label: "Docker Engine" },
   { id: "postgresql", label: "PostgreSQL" },
@@ -135,15 +136,16 @@ export async function fetchJavaNews(signal?: AbortSignal): Promise<NewsItem[]> {
   return [...unique.values()]
     .filter((h) => (h.points ?? 0) >= 2)
     .sort((a, b) => b.created_at_i - a.created_at_i)
-    .slice(0, 10)
+    .slice(0, NEWS_COUNT)
     .map(toNews);
 }
 
 export async function fetchTopTech(signal?: AbortSignal): Promise<NewsItem[]> {
-  const hits = await hnSearch("search", { tags: "front_page", hitsPerPage: "10" }, signal);
+  const hits = await hnSearch("search", { tags: "front_page", hitsPerPage: "30" }, signal);
   return hits
     .filter((h) => h.title)
     .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
+    .slice(0, NEWS_COUNT)
     .map(toNews);
 }
 

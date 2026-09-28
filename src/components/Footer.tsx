@@ -7,9 +7,6 @@ export default function Footer() {
         <p>
           © {new Date().getFullYear()} {profile.name}
         </p>
-        <p>
-          Psst — press <kbd className="rounded-[2px] border border-frame px-1.5 text-soft">`</kbd> to open the terminal
-        </p>
       </div>
     </footer>
   );

@@ -9,6 +9,8 @@ import {
   fetchStack,
   fetchTopTech,
   formatDate,
+  NEWS_COUNT,
+  STACK,
   relativeTime,
   type JavaInfo,
   type NewsItem,
@@ -192,7 +194,7 @@ export default function Radar() {
           ) : (
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {!stack.data
-                ? Array.from({ length: 9 }, (_, i) => <Skeleton key={i} className="h-[100px] rounded-[20px]" />)
+                ? Array.from({ length: STACK.length }, (_, i) => <Skeleton key={i} className="h-[100px] rounded-[20px]" />)
                 : stack.data.map((r) => {
                     const fresh = now - r.date < NEW_MS;
                     return (
@@ -250,7 +252,7 @@ export default function Radar() {
         ) : (
           <ol className="space-y-3 border-l border-dashed border-uv-rule pl-5 sm:ml-32 sm:pl-6">
             {!items.data
-              ? Array.from({ length: 6 }, (_, i) => (
+              ? Array.from({ length: NEWS_COUNT }, (_, i) => (
                   <li key={i} className="space-y-2 py-2">
                     <Skeleton className="h-5 w-3/4" />
                     <Skeleton className="h-3 w-1/3" />

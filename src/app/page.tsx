@@ -11,7 +11,6 @@ import Projects from "@/components/Projects";
 import Radar from "@/components/Radar";
 import Skills from "@/components/Skills";
 import Stats from "@/components/Stats";
-import Terminal from "@/components/Terminal";
 
 export default function Home() {
   return (
@@ -30,7 +29,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <Terminal />
       <ChatBot />
     </>
   );
