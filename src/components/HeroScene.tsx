@@ -41,6 +41,9 @@ export default function HeroScene({ className }: { className?: string }) {
       return; // WebGL unavailable: the hero still works without the scene
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Fade only (no rise); the first frame is drawn before the browser paints, so it fades in from real content
+    renderer.domElement.classList.add("rise");
+    renderer.domElement.style.setProperty("--rise", "0px");
     mount.appendChild(renderer.domElement);
 
     // Without a GPU (SwiftShader/llvmpipe, as in headless audit browsers) every frame is drawn on the CPU,
