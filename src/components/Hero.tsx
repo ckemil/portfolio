@@ -2,7 +2,6 @@
 
 import { ArrowDown, Download, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 import { profile } from "@/data/resume";
 
 // three.js is heavy, so load the scene in the browser after the page renders
@@ -11,27 +10,9 @@ const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 export default function Hero() {
   const words = profile.name.split(" ");
 
-  // three.js is ~130 KB, so don't fetch it until the page has loaded and the browser is idle
-  const [showScene, setShowScene] = useState(false);
-  useEffect(() => {
-    let idle = 0;
-    const start = () => {
-      idle = window.requestIdleCallback
-        ? window.requestIdleCallback(() => setShowScene(true), { timeout: 3000 })
-        : window.setTimeout(() => setShowScene(true), 1500);
-    };
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
-    return () => {
-      window.removeEventListener("load", start);
-      if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
-      else window.clearTimeout(idle);
-    };
-  }, []);
-
   return (
     <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-16">
-      {showScene && <HeroScene className="rise absolute inset-y-0 right-0 w-full opacity-30 lg:w-[58%] lg:opacity-100 [--rise:0px] [animation-duration:1.2s]" />}
+      <HeroScene className="absolute inset-y-0 right-0 w-full opacity-30 lg:w-[58%] lg:opacity-100" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 py-16 md:px-12">
         <p className="rise pill mb-8 gap-1.5 bg-mint text-black">

@@ -43,6 +43,13 @@ export default function HeroScene({ className }: { className?: string }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
 
+    // Without a GPU (SwiftShader/llvmpipe, as in headless audit browsers) every frame is drawn on the CPU,
+    // so show a still frame there instead of animating
+    const gl = renderer.getContext();
+    const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+    const gpu = debugInfo ? String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)) : "";
+    const still = reduce || /swiftshader|llvmpipe|software/i.test(gpu);
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.z = 10;
@@ -97,13 +104,13 @@ export default function HeroScene({ className }: { className?: string }) {
       renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      if (reduce) renderer.render(scene, camera);
+      if (still) renderer.render(scene, camera);
     };
     const ro = new ResizeObserver(resize);
     ro.observe(mount);
     resize();
 
-    if (reduce) {
+    if (still) {
       renderer.render(scene, camera);
       return () => {
         ro.disconnect();
