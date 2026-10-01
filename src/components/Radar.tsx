@@ -1,6 +1,5 @@
 "use client";
 
-import { useInView } from "framer-motion";
 import { ArrowUpRight, Coffee, MessageSquare, RefreshCw, TriangleAlert } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -18,6 +17,7 @@ import {
 } from "@/lib/radar";
 import Reveal from "./Reveal";
 import Section from "./Section";
+import { useInView } from "@/lib/useInView";
 
 type Tab = "java" | "tech";
 type Loadable<T> = { data: T | null; error: boolean };
@@ -46,7 +46,7 @@ function Failed({ onRetry }: { onRetry: () => void }) {
 
 export default function Radar() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "300px" });
+  const inView = useInView(ref, { once: true, rootMargin: "300px" });
 
   const [java, setJava] = useState<Loadable<JavaInfo>>(empty);
   const [stack, setStack] = useState<Loadable<Release[]>>(empty);
@@ -194,7 +194,11 @@ export default function Radar() {
           ) : (
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {!stack.data
-                ? Array.from({ length: STACK.length }, (_, i) => <Skeleton key={i} className="h-[100px] rounded-[20px]" />)
+                ? Array.from({ length: STACK.length }, (_, i) => (
+                    <li key={i}>
+                      <Skeleton className="h-[100px] rounded-[20px]" />
+                    </li>
+                  ))
                 : stack.data.map((r) => {
                     const fresh = now - r.date < NEW_MS;
                     return (

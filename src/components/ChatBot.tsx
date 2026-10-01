@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { MessageCircle, Send, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/resume";
@@ -65,7 +65,7 @@ export default function ChatBot() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             role="dialog"
             aria-label="Chat about Emil"
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
@@ -164,7 +164,7 @@ export default function ChatBot() {
                 <Send className="h-4 w-4" />
               </button>
             </form>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

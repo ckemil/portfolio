@@ -1,8 +1,8 @@
 "use client";
 
-import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { stats } from "@/data/resume";
+import { useInView } from "@/lib/useInView";
 import Reveal from "./Reveal";
 
 // Saturated colour-block tiles — colour does the elevation, not shadow
@@ -11,18 +11,21 @@ const fills = ["bg-mint text-black", "bg-uv text-white", "bg-yellow text-black",
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
   const [n, setN] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(0, to, {
-      duration: reduce ? 0 : 1.6,
-      ease: "easeOut",
-      onUpdate: (v) => setN(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, reduce, to]);
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1600;
+    const t0 = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = duration ? Math.min((now - t0) / duration, 1) : 1;
+      setN(Math.round(to * (1 - (1 - p) ** 3))); // ease-out cubic
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to]);
 
   return (
     <span ref={ref}>

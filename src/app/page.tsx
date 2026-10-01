@@ -6,6 +6,7 @@ import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Game from "@/components/Game";
 import Hero from "@/components/Hero";
+import MotionProvider from "@/components/MotionProvider";
 import Nav from "@/components/Nav";
 import Projects from "@/components/Projects";
 import Radar from "@/components/Radar";
@@ -47,21 +48,23 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <Nav />
-      <main>
-        <Hero />
-        <Stats />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Radar />
-        <Game />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
-      <ChatBot />
+      <MotionProvider>
+        <Nav />
+        <main>
+          <Hero />
+          <Stats />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Radar />
+          <Game />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+        <ChatBot />
+      </MotionProvider>
     </>
   );
 }

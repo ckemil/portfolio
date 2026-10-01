@@ -1,10 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Play, RotateCcw, Trophy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 import Section from "./Section";
+import { useInView } from "@/lib/useInView";
 
 // Stack Overflow — drop each layer of your tech stack on the one below.
 // Only the overlapping part survives; miss completely and the tower falls.
@@ -273,7 +274,7 @@ export default function Game() {
 
             <AnimatePresence>
               {pieces.map((p) => (
-                <motion.div
+                <m.div
                   key={p.id}
                   initial={{ y: 0, rotate: 0, opacity: 1 }}
                   animate={{ y: 420, rotate: p.dir * 35, opacity: 0 }}
@@ -288,7 +289,7 @@ export default function Game() {
 
           <AnimatePresence>
             {toast && phase === "playing" && (
-              <motion.p
+              <m.p
                 key={toast.id}
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -296,7 +297,7 @@ export default function Game() {
                 className="pill absolute top-5 left-1/2 -translate-x-1/2 bg-white whitespace-nowrap text-black"
               >
                 {toast.text}
-              </motion.p>
+              </m.p>
             )}
           </AnimatePresence>
 
@@ -335,7 +336,7 @@ export default function Game() {
 
 function Layer({ block, bottom }: { block: Block; bottom: number }) {
   return (
-    <motion.div
+    <m.div
       initial={{ scaleY: 0.4, opacity: 0 }}
       animate={{ scaleY: 1, opacity: 1 }}
       transition={{ duration: 0.15 }}
@@ -343,6 +344,6 @@ function Layer({ block, bottom }: { block: Block; bottom: number }) {
       style={{ left: `${block.x}%`, width: `${block.w}%`, bottom, height: BLOCK_H - 2 }}
     >
       {block.w > 16 && <span className="meta truncate px-2">{block.label}</span>}
-    </motion.div>
+    </m.div>
   );
 }

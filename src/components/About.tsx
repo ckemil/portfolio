@@ -15,11 +15,9 @@ export default function About() {
     >
       <ul className="grid gap-3 md:grid-cols-2">
         {summary.map((line, i) => (
-          <Reveal key={line} delay={i * 0.05}>
-            <li className="tile flex h-full gap-5 p-6 sm:p-7">
-              <span className="kicker pt-1 text-mint">{String(i + 1).padStart(2, "0")}</span>
-              <p className="text-base leading-[1.6] font-medium text-soft">{line}</p>
-            </li>
+          <Reveal as="li" key={line} delay={i * 0.05} className="tile flex h-full gap-5 p-6 sm:p-7">
+            <span className="kicker pt-1 text-mint">{String(i + 1).padStart(2, "0")}</span>
+            <p className="text-base leading-[1.6] font-medium text-soft">{line}</p>
           </Reveal>
         ))}
       </ul>
