@@ -17,6 +17,8 @@ export type Project = {
 
 export const profile = {
   name: "Emil Mohammed",
+  fullName: "Emil Mohammed CK",
+  handle: "ckemil",
   firstName: "Emil",
   title: "Senior Java Developer",
   tagline: "Microservices & Cloud-Native Systems",
