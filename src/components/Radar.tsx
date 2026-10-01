@@ -122,9 +122,9 @@ export default function Radar() {
       <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
         {/* Java release tracker — the mint spotlight tile */}
         <Reveal className="rounded-[24px] bg-mint p-8 text-black">
-          <p className="kicker inline-flex items-center gap-2">
+          <h3 className="kicker inline-flex items-center gap-2">
             <Coffee className="h-4 w-4" /> Latest Java
-          </p>
+          </h3>
           {java.error ? (
             <Failed onRetry={refresh} />
           ) : !java.data ? (
@@ -188,7 +188,7 @@ export default function Radar() {
 
         {/* Stack releases */}
         <Reveal delay={0.06} className="tile p-6 sm:p-8">
-          <p className="kicker mb-5 text-mint">Latest releases in my stack</p>
+          <h3 className="kicker mb-5 text-mint">Latest releases in my stack</h3>
           {stack.error ? (
             <Failed onRetry={refresh} />
           ) : (

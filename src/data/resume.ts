@@ -24,6 +24,7 @@ export const profile = {
   email: "ckemil@gmail.com",
   linkedin: "https://www.linkedin.com/in/ckemil/",
   resume: "/Emil_Mohammed_Resume.pdf",
+  siteUrl: "https://ckemil.com",
   intro:
     "I engineer Java enterprise applications and cloud-native microservices for high-volume, regulated environments — from financial identity verification to air-cargo logistics.",
 };

@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
 import { Anton, Space_Grotesk, Space_Mono } from "next/font/google";
 import { profile } from "@/data/resume";
 import "./globals.css";
@@ -22,16 +24,51 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-const description = `${profile.title} — ${profile.tagline}. ${profile.intro}`;
+const title = `${profile.name} — ${profile.title}`;
+const description = `${profile.title} in ${profile.location} building Java microservices and cloud-native systems with Spring Boot, Kafka and Kubernetes.`;
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.title}`,
+  metadataBase: new URL(profile.siteUrl),
+  title,
   description,
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: profile.siteUrl }],
+  creator: profile.name,
+  keywords: [
+    profile.name,
+    profile.title,
+    "Java Developer",
+    "Spring Boot",
+    "Spring Cloud",
+    "Microservices",
+    "Apache Kafka",
+    "Kubernetes",
+    "Docker",
+    "Cloud-Native",
+    "Abu Dhabi",
+    "UAE",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: `${profile.name} — ${profile.title}`,
+    title,
     description,
-    type: "website",
+    url: "/",
+    siteName: profile.name,
+    locale: "en_US",
+    type: "profile",
+    firstName: profile.firstName,
+    lastName: profile.name.split(" ").slice(1).join(" "),
   },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#131313",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -42,6 +79,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full overflow-x-hidden font-sans" suppressHydrationWarning>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

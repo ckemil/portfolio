@@ -45,8 +45,11 @@ export default function Hero() {
               className={`block ${i === words.length - 1 ? "text-mint" : ""}`}
             >
               {w}
+              {/* keeps "Emil Mohammed" as two words in the page text */}
+              {i < words.length - 1 && " "}
             </motion.span>
           ))}
+          <span className="sr-only">, {profile.title}</span>
         </h1>
 
         <motion.div
