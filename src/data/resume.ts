@@ -32,7 +32,7 @@ export const profile = {
 };
 
 export const stats = [
-  { value: 6, suffix: "+", label: "Years building Java systems" },
+  { value: 7, suffix: "+", label: "Years building Java systems" },
   { value: 10, suffix: "K+", label: "KYC transactions per day" },
   { value: 95, suffix: "%+", label: "Unit test coverage sustained" },
   { value: 60, suffix: "%", label: "Manual workload eliminated" },
