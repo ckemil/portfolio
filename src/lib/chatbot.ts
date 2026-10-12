@@ -44,7 +44,7 @@ const intents: Record<string, Intent> = {
   experience: {
     keywords: ["experience", "work", "worked", "job", "jobs", "career", "companies", "company", "employer", "history", "years", "roles", "senior"],
     answer: () => ({
-      text: `${profile.firstName} has 6+ years of experience building Java enterprise systems:\n\n${experience
+      text: `${profile.firstName} has 7+ years of experience building Java enterprise systems:\n\n${experience
         .map((j) => `• ${j.role} — ${j.company}, ${j.period}`)
         .join("\n")}\n\nAsk about any company for details.`,
     }),
