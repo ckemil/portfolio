@@ -24,7 +24,7 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-const title = `${profile.name} — ${profile.title}`;
+const title = `${profile.name} | ${profile.title}`;
 const description = `Portfolio of ${profile.fullName}, ${profile.title} based in ${profile.location}. Specializing in Spring Boot, cloud-native microservices and distributed backends.`;
 
 export const metadata: Metadata = {
