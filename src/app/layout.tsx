@@ -25,7 +25,7 @@ const spaceMono = Space_Mono({
 });
 
 const title = `${profile.name} — ${profile.title}`;
-const description = `${profile.title} in ${profile.location} building Java microservices and cloud-native systems with Spring Boot, Kafka and Kubernetes.`;
+const description = `Portfolio of ${profile.fullName}, ${profile.title} based in ${profile.location}. Specializing in Spring Boot, cloud-native microservices and distributed backends.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
@@ -36,35 +36,50 @@ export const metadata: Metadata = {
   creator: profile.name,
   keywords: [
     profile.name,
+    profile.fullName,
+    profile.handle,
     profile.title,
+    "ckemil.com",
     "Java Developer",
     "Spring Boot",
     "Spring Cloud",
     "Microservices",
     "Apache Kafka",
-    "Kubernetes",
     "Docker",
-    "Cloud-Native",
     "Abu Dhabi",
     "UAE",
+    "Senior Java Developer Abu Dhabi",
+    "Backend Engineer Emirates Face Recognition",
   ],
-  alternates: { canonical: "/" },
+  alternates: { canonical: profile.siteUrl },
   openGraph: {
     title,
     description,
-    url: "/",
+    url: profile.siteUrl,
     siteName: profile.name,
     locale: "en_US",
     type: "profile",
     firstName: profile.firstName,
     lastName: profile.name.split(" ").slice(1).join(" "),
+    username: profile.handle,
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {

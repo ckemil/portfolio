@@ -43,7 +43,7 @@ export const summary = [
   "Event-driven architecture with Apache Kafka and RabbitMQ, containerized with Docker and Kubernetes.",
   "CI/CD and DevOps practice with Jenkins, SonarQube and Git, consistently keeping automated test coverage above 90%.",
   "Full-stack contributions with React, CSS3 and HTML5.",
-  "Six years of Agile/Scrum — grooming, planning and retrospectives.",
+  "Seven years of Agile/Scrum — grooming, planning and retrospectives.",
 ];
 
 export const skills: { group: string; items: string[] }[] = [
