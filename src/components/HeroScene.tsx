@@ -142,11 +142,12 @@ export default function HeroScene({ className }: { className?: string }) {
     io.observe(mount);
 
     let frame = 0;
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     const loop = () => {
       cancelAnimationFrame(frame);
       if (!visible) return;
-      const t = clock.getElapsedTime();
+      timer.update();
+      const t = timer.getElapsed();
       const scroll = window.scrollY;
 
       knotPoints.rotation.y = t * 0.15;
@@ -165,6 +166,7 @@ export default function HeroScene({ className }: { className?: string }) {
 
     return () => {
       cancelAnimationFrame(frame);
+      timer.dispose();
       window.removeEventListener("pointermove", onPointer);
       io.disconnect();
       ro.disconnect();
