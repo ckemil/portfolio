@@ -61,7 +61,7 @@ export default function HeroScene({ className }: { className?: string }) {
     scene.add(group);
 
     // Knot of particles
-    const knot = new THREE.TorusKnotGeometry(2.4, 0.75, small ? 160 : 260, small ? 14 : 22, 2, 3);
+    const knot = new THREE.TorusKnotGeometry(2.4, 0.75, small ? 110 : 140, small ? 10 : 12, 2, 3);
     const knotPos = knot.getAttribute("position");
     const knotColors = new Float32Array(knotPos.count * 3);
     const c = new THREE.Color();
@@ -74,7 +74,7 @@ export default function HeroScene({ className }: { className?: string }) {
     knot.dispose();
 
     // Loose dust around it
-    const dustCount = small ? 300 : 700;
+    const dustCount = small ? 600 : 1500;
     const dustPos = new Float32Array(dustCount * 3);
     const dustColors = new Float32Array(dustCount * 3);
     for (let i = 0; i < dustCount; i++) {
@@ -126,6 +126,9 @@ export default function HeroScene({ className }: { className?: string }) {
       };
     }
 
+    // Desktop runs calmer: slower spin, gentler pointer tilt
+    const calm = small ? 1 : 0.5;
+
     // Pointer tilt + scroll
     const pointer = { x: 0, y: 0 };
     const onPointer = (e: PointerEvent) => {
@@ -150,14 +153,14 @@ export default function HeroScene({ className }: { className?: string }) {
       const t = timer.getElapsed();
       const scroll = window.scrollY;
 
-      knotPoints.rotation.y = t * 0.15;
-      knotPoints.rotation.x = t * 0.05;
-      dustPoints.rotation.y = -t * 0.03;
+      knotPoints.rotation.y = t * 0.15 * calm;
+      knotPoints.rotation.x = t * 0.05 * calm;
+      dustPoints.rotation.y = -t * 0.03 * calm;
 
-      group.rotation.x += (pointer.y * 0.35 + scroll * 0.0006 - group.rotation.x) * 0.05;
-      group.rotation.y += (pointer.x * 0.5 - group.rotation.y) * 0.05;
+      group.rotation.x += (pointer.y * 0.35 * calm + scroll * 0.0006 - group.rotation.x) * 0.05;
+      group.rotation.y += (pointer.x * 0.5 * calm - group.rotation.y) * 0.05;
       group.position.y = scroll * 0.004;
-      group.scale.setScalar(1 + Math.sin(t * 0.8) * 0.03 + scroll * 0.0004);
+      group.scale.setScalar(1 + Math.sin(t * 0.8) * 0.03 * calm + scroll * 0.0004);
 
       renderer.render(scene, camera);
       frame = requestAnimationFrame(loop);

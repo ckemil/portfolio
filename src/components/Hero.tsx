@@ -12,7 +12,7 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-16">
-      <HeroScene className="absolute inset-y-0 right-0 w-full opacity-30 lg:w-[58%] lg:opacity-100" />
+      <HeroScene className="absolute inset-y-0 right-0 w-full opacity-30 lg:w-[58%] lg:opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_90%)]" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 py-16 md:px-12">
         <p className="rise pill mb-8 gap-1.5 bg-mint text-black">
